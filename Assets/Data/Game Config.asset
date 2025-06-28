@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd2564359fcdc1345be3f3489d7b411a, type: 3}
+  m_Name: Game Config
+  m_EditorClassIdentifier: 
+  globalSeed: 603628
+  maxLevelCount: 28
+  levelOverrides: []
+  baseGenerator: {fileID: 11400000, guid: 70ff8ba6cc0824847842f996bd0b8a43, type: 2}
+  baseTileData: {fileID: 11400000, guid: c6aff23d73a420046bba0fa120b797fa, type: 2}
