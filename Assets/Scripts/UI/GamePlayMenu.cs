@@ -3,6 +3,7 @@ using System.Collections;
 using System.Text;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace UI
 {
@@ -15,7 +16,8 @@ namespace UI
         [SerializeField] private float fadeOutDuration;
         [SerializeField] private float fadeInDuration;
         [SerializeField] private float animationIdleTime;
-        
+        [SerializeField] private LevelCompletePopup completePopup;
+        [SerializeField] private Transform popupParent;
         
         private StringBuilder levelStringBuilder = new();
         private StringBuilder seedStringBuilder = new();
@@ -43,9 +45,26 @@ namespace UI
             DoAnimation();
         }
 
+        public void Hide()
+        {
+            if (animationCoroutine != null)
+            {
+                StopCoroutine(animationCoroutine);
+            }
+
+            canvasGroup.alpha = 0;
+        }
+
         public void UpdateTimer(string data)
         {
             currentTimeText.SetText(data);
+        }
+
+        public void OnLevelComplete(float distance, Action onContinue, Action onExit)
+        {
+            var popup = Instantiate(completePopup, popupParent);
+            
+            popup.Init(distance, onContinue, onExit);
         }
 
         private void DoAnimation()

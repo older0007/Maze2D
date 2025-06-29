@@ -10,9 +10,14 @@ namespace Gameplay
         [SerializeField] private Rigidbody2D rigidbody2D;
         [SerializeField] private PlayerConfig playerConfig;
         [SerializeField] private Animator animator;
+
+        private bool canMove;
+        private float distance;
+        public float Distance => distance;
+
         public void Move(Vector2 direction)
         {
-            if (direction == Vector2.zero)
+            if (direction == Vector2.zero || !canMove)
             {
                 return;
             }
@@ -21,6 +26,18 @@ namespace Gameplay
             rigidbody2D.MovePosition(targetPos);
             animator.SetFloat("Horizontal", direction.x);
             animator.SetFloat("Vertical", direction.y);
+
+            distance += direction.magnitude;
+        }
+
+        public void Reset()
+        {
+            distance = 0;
+        }
+
+        public void SetMoveState(bool state)
+        {
+            canMove = state;
         }
     }
 }

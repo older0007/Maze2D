@@ -5,11 +5,17 @@ namespace Utils
 {
     public class Timer
     {
+        private bool isStopted;
         private float elapsedTime;
         private readonly StringBuilder stringBuilder = new StringBuilder(8);
             
         public void Update()
         {
+            if (isStopted)
+            {
+                return;
+            }
+
             elapsedTime += Time.deltaTime;
 
             if (elapsedTime <= 0)
@@ -30,8 +36,13 @@ namespace Utils
 
         public void Clear()
         {
+            isStopted = false;
             elapsedTime = 0;
         }
-        
+
+        public void Stop()
+        {
+            isStopted = true;
+        }
     }
 }

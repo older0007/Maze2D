@@ -47,6 +47,10 @@ namespace Controllers
 
             player.gameObject.transform.position = level.StartPositionVector3;
             player.gameObject.SetActive(true);
+            player.Reset();
+            player.SetMoveState(true);
+
+            gameplayTimer.Clear();
 
             for (var index = 0; index < vfxTransforms.Count; index++)
             {
@@ -76,9 +80,11 @@ namespace Controllers
             SaveController.PlayerData.Seed = level.Seed;
             
             SaveController.Save();
-            gameplayTimer.Clear();
-            
-            StartLevel();
+            gamePlayMenu.Hide();
+            gameplayTimer.Stop();
+
+            gamePlayMenu.OnLevelComplete(player.Distance, StartLevel, GoToMainMenu);
+            player.SetMoveState(false);
         }
 
         private void OnDisable()
