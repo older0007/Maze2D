@@ -9,7 +9,7 @@ namespace Generator
     {
         private List<Vector2Int> startRoomArea = new();
 
-        public override MazeData Generate(int levelIndex, TileData tileData, int seed = -1)
+        public override MazeData Generate(int levelIndex, TileData tileData, Tilemap map, int seed = -1)
         {
             int width = Width;
             int height = Height;
@@ -41,7 +41,8 @@ namespace Generator
                 ? FindShortestPath(center, exits[0], types)
                 : new List<Vector2Int>();
 
-            return new MazeData(center, types, tiles, shortestPath, exits, seed);
+
+            return new MazeData(center, types, tiles, shortestPath, exits, seed, map);
         }
 
         private List<Vector2Int> GenerateStartRoom(Vector2Int center, MazeData.TileType[,] types, TileBase[,] tiles, TileData tileData)

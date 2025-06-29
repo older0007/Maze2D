@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Generator
 {
@@ -12,7 +13,7 @@ namespace Generator
         [SerializeField] private int exitCount = 1;
         [SerializeField] private int minDistToExit = 3;
 
-        public abstract MazeData Generate(int levelIndex, TileData tileData, int seed = -1);
+        public abstract MazeData Generate(int levelIndex, TileData tileData, Tilemap map, int seed = -1);
 
         public enum RoomShape { Square = 1, Circle = 2 }
 

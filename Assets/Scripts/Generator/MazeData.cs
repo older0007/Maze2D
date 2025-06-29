@@ -15,9 +15,10 @@ namespace Generator
         public List<Vector2Int> ShortestPath { get; }
 
         public int Seed { get; }
-        private const float Offset = 0.5f;
+        //player visual size
+        private Vector3 offset = new Vector3(0.35f, 0.35f, 0.35f);
         
-        public MazeData(Vector2Int startPos, TileType[,] types, TileBase[,] tiles, List<Vector2Int> path, List<Vector2Int> exits, int seed)
+        public MazeData(Vector2Int startPos, TileType[,] types, TileBase[,] tiles, List<Vector2Int> path, List<Vector2Int> exits, int seed, Tilemap tilemap)
         {
             StartPosition = startPos;
             TileTypes = types;
@@ -25,7 +26,9 @@ namespace Generator
             ShortestPath = path;
             ExitPositions = exits;
 
-            StartPositionVector3 = new Vector3(startPos.x + Offset, startPos.y + Offset, 0);
+            Vector3Int position = (Vector3Int)startPos;
+            StartPositionVector3 = tilemap.LocalToWorld(position) + tilemap.cellSize - offset;
+
             Seed = seed;
         }
     }

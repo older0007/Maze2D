@@ -7,6 +7,8 @@ namespace Generator
     {
         [SerializeField] private Tilemap tilemap;
 
+        public Tilemap Tilemap => tilemap;
+        
         public void Clear()
         {
             tilemap.ClearAllTiles();
@@ -28,6 +30,5 @@ namespace Generator
                 }
             }
         }
-
     }
 }

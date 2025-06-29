@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Events;
 using Gameplay;
 using Generator;
@@ -15,7 +16,8 @@ namespace Controllers
         [SerializeField] private Player player;
         [SerializeField] private TriggerEnterEvent playerExitTrigger;
         [SerializeField] private GameConfig gameConfig;
-        [FormerlySerializedAs("mainMenu")] [SerializeField] private GamePlayMenu gamePlayMenu;
+        [SerializeField] private GamePlayMenu gamePlayMenu;
+        [SerializeField] private List<Transform> vfxTransforms;
 
         private MazeData level;
         private Timer gameplayTimer;
@@ -43,10 +45,16 @@ namespace Controllers
             var currentLevel = SaveController.PlayerData.LevelIndex;
             level = mazeGenerator.GenerateAndRenderLevel(SaveController.PlayerData.LevelIndex, SaveController.PlayerData.Seed);
 
-            Debug.LogError(level.StartPositionVector3);
             player.gameObject.transform.position = level.StartPositionVector3;
             player.gameObject.SetActive(true);
-            
+
+            for (var index = 0; index < vfxTransforms.Count; index++)
+            {
+                var vfx = vfxTransforms[index];
+
+                vfx.position = level.StartPositionVector3;
+            }
+
             gamePlayMenu.Show(currentLevel, level.Seed);
         }
 

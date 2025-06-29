@@ -33,7 +33,7 @@ namespace Generator
                 : config.DefaultTiles;
 
             var seed = overrideSeed == -1 ? config.Seed : overrideSeed;
-            var maze = generator.Generate(levelIndex, tileSet, seed);
+            var maze = generator.Generate(levelIndex, tileSet, mazeRenderer.Tilemap, seed);
             
             mazeRenderer.Render(maze);
             
