@@ -1,0 +1,26 @@
+﻿using System;
+using System.Collections.Generic;
+using GamePlaySetup;
+using UnityEngine;
+
+namespace Gameplay
+{
+    public class Player : MonoBehaviour
+    {
+        [SerializeField] private Rigidbody2D rigidbody2D;
+        [SerializeField] private PlayerConfig playerConfig;
+        [SerializeField] private Animator animator;
+        public void Move(Vector2 direction)
+        {
+            if (direction == Vector2.zero)
+            {
+                return;
+            }
+
+            Vector2 targetPos = rigidbody2D.position + direction * playerConfig.Speed * Time.fixedDeltaTime;
+            rigidbody2D.MovePosition(targetPos);
+            animator.SetFloat("Horizontal", direction.x);
+            animator.SetFloat("Vertical", direction.y);
+        }
+    }
+}

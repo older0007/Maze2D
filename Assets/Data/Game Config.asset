@@ -14,6 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   globalSeed: 603628
   maxLevelCount: 28
-  levelOverrides: []
+  levelOverrides:
+  - levelIndex: 5
+    tileDataOverride: {fileID: 11400000, guid: 20ad968a3407be846ab5fa486a7df1f4, type: 2}
+    generatorOverride: {fileID: 11400000, guid: 70ff8ba6cc0824847842f996bd0b8a43, type: 2}
+  - levelIndex: 10
+    tileDataOverride: {fileID: 11400000, guid: d6bc1c9611d184e4a999bf1d5fdaa3fc, type: 2}
+    generatorOverride: {fileID: 11400000, guid: 70ff8ba6cc0824847842f996bd0b8a43, type: 2}
   baseGenerator: {fileID: 11400000, guid: 70ff8ba6cc0824847842f996bd0b8a43, type: 2}
   baseTileData: {fileID: 11400000, guid: c6aff23d73a420046bba0fa120b797fa, type: 2}

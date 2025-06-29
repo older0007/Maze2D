@@ -41,7 +41,7 @@ namespace Generator
                 ? FindShortestPath(center, exits[0], types)
                 : new List<Vector2Int>();
 
-            return new MazeData(center, types, tiles, shortestPath, exits);
+            return new MazeData(center, types, tiles, shortestPath, exits, seed);
         }
 
         private List<Vector2Int> GenerateStartRoom(Vector2Int center, MazeData.TileType[,] types, TileBase[,] tiles, TileData tileData)
